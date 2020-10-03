@@ -1,0 +1,42 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+using namespace std;
+
+int main()
+{
+	int a[26] = { 0 };
+	string t = "ABCDEFGHIJKLMNOPRSTUVWXYZ?";
+	string s;
+	int max = 0, idx = 0;
+	cin >> s;
+	for (int i = 0; i < s.length(); i++)
+	{
+		s[i] = toupper(s[i]);
+		a[t.find(s[i])]++;
+	}
+	for (int i = 0; i < sizeof(a)/sizeof(int); i++)
+	{
+		if (a[i] == 0)
+			continue;
+		if (max == a[i])
+		{
+			idx = 26;
+			continue;
+		}
+		if (max < a[i])
+		{
+			max = a[i];
+			idx = i;
+		}
+	}
+	if (idx == 26)
+		cout << "?";
+	else
+		cout << t[idx];
+	return 0;
+}
