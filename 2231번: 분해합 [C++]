@@ -1,0 +1,44 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+
+using namespace std;
+
+#define min(a,b) a > b ? b : a
+#define max(a,b) a > b ? a : b
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int t, flag = 0;
+	string s;
+	cin >> t;
+
+	for (int i = 0; i < 1000000; i++)
+	{
+		s = to_string(i);
+		int res = 0;
+		for (int j = 0; j < s.length(); j++)
+		{
+			char tmp = s[j];
+			res += tmp - '0';
+		}
+		res += i;
+		if (res == t)
+		{
+			cout << i << '\n';
+			flag = 1;
+			break;
+		}
+		else if (t <= i)
+			break;
+	}
+	if (flag == 0)
+		cout << '0' << '\n';
+	return 0;
+}
