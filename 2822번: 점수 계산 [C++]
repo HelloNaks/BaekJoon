@@ -1,0 +1,47 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int A[9];
+	int B[9];
+	int tmp = 0;
+	for (int i = 1; i <= 8; i++)
+	{
+		cin >> A[i];
+		B[i] = A[i];
+	}
+	sort(B + 1, B + 9);
+	for (int i = 1; i <= 4; i++)
+	{
+		for (int j = i + 1; j <= 5; j++)
+		{
+			for (int k = j + 1; k <= 6; k++)
+			{
+				for (int m = k + 1; m <= 7; m++)
+				{
+					for (int n = m + 1; n <= 8; n++)
+					{
+
+						if (B[4] + B[5] + B[6] + B[7] + B[8] == A[i] + A[j] + A[k] + A[m] + A[n])
+						{
+							printf("%d\n%d %d %d %d %d", B[4] + B[5] + B[6] + B[7] + B[8], i, j, k, m, n);
+							return 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	return 0;
+}
