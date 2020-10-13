@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool compare(long long a, long long b)
+{
+	if (a < b)
+		return false;
+	else
+		return true;
+}
+
+int main()
+{
+	int a;
+	cin >> a;
+	long long *A = (long long*)malloc(sizeof(long long)*a);
+	for (int i = 0; i < a; i++)
+	{
+		cin >> A[i];
+	}
+	sort(A, A + a, compare);
+	for (int i = 0; i < a; i++)
+	{
+		printf("%lld\n", A[i]);
+	}
+	return 0;
+}
