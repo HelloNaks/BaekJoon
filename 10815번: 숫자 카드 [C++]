@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <queue>
+
+using namespace std;
+
+vector<int> ans;
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+
+	int N, M;
+	cin >> N;			//상근이의 카드 갯수
+	vector<int> k_num;	//상근이의 숫자 카드
+	k_num.resize(N);
+	for (int i = 0; i < N; i++)
+	{
+		cin >> k_num[i];
+	}
+	cin >> M;
+	vector<int> c_num;	//예시 정수들
+	c_num.resize(M);
+	for (int i = 0; i < M; i++)
+	{
+		cin >> c_num[i];
+	}
+	
+	sort(k_num.begin(), k_num.end());
+	int start = 0, end = 0;
+	for (int i = 0; i < M; i++)
+	{
+		start = 0;
+		end = N;
+		if (binary_search(k_num.begin(), k_num.end(), c_num[i]))
+			ans.push_back(1);
+		else
+			ans.push_back(0);
+	}
+
+	for (int i = 0; i < ans.size(); i++)
+	{
+		cout << ans[i] << '\n';
+	}
+	return 0;
+}
