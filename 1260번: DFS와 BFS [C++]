@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <cstring>
+
+using namespace std;
+
+int map[1001][1001];
+bool visited[1001];
+
+void DFS(int N, int V)
+{
+	int i = 0;
+	cout << V << ' ';
+	visited[V] = 1;
+	for (i = 1; i <= N; i++)
+	{
+		if (map[V][i] && !visited[i])
+			DFS(N, i);
+	}
+	if (i == N)
+		return;
+}
+
+void BFS(int N, int V)
+{
+	queue<int> q;
+	int i = 0;
+	q.push(V);
+	visited[V] = 1;
+
+	while (!q.empty())
+	{
+		int front = q.front();
+		visited[front] = true;
+		cout << front << ' ';
+		q.pop();
+
+		for (i = 1; i <= N; i++)
+		{
+			if (map[front][i] && !visited[i])
+			{
+				visited[i] = 1;
+				q.push(i);
+			}
+		}
+	}
+}
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+	int N, M, V;
+	cin >> N >> M >> V;
+	for (int i = 1; i <= M; i++)
+	{
+		int a, b;
+		cin >> a >> b;
+		map[a][b] = 1;
+		map[b][a] = 1;
+	}
+
+	DFS(N, V);
+	cout << '\n';
+	memset(visited, 0, sizeof(visited));
+	BFS(N, V);
+
+	return 0;
+}
