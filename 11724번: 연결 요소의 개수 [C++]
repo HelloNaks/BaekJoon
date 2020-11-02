@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <cstring>
+
+using namespace std;
+int map[1001][1001] = { 0 };
+bool visited[1001];
+int answer = 0;
+void dfs(int N, int v)
+{
+	for (int i = 0; i <= N; i++)
+	{
+		if (map[v][i] == 1 && !visited[i])
+		{
+			visited[i] = 1;
+			dfs(N, i);
+		}
+	}
+	return;
+}
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+	int N, M;
+	cin >> N >> M;
+	for (int i = 0; i < M; i++)
+	{
+		int a, b;
+		cin >> a >> b;
+		map[a][b] = 1;
+		map[b][a] = 1;
+	}
+	queue<int> q1;
+	for (int i = 1; i <= N; i++)
+	{
+		if (visited[i] == 1)
+			continue;
+		else
+		{
+			dfs(N, i);
+			answer++;
+		}
+	}
+	cout << answer;
+	return 0;
+}
