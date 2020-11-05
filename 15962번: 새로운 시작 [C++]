@@ -1,0 +1,14 @@
+#include <iostream>
+#include <algorithm>
+#include <stdlib.h>
+#include <vector>
+
+using namespace std;
+
+int A[1001];
+
+int main()
+{
+	cout << "파이팅!!";
+	return 0;
+}
