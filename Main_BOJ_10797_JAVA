@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] cars = new int[5];
+		int num;
+		int cnt = 0;
+		Scanner scann = new Scanner(System.in);
+		num = scann.nextInt();
+		for (int i = 0; i < cars.length; i++) {
+			cars[i]=scann.nextInt();
+			if(cars[i]==num)
+				cnt++;
+		}
+		System.out.println(cnt);
+	}
+
+}
