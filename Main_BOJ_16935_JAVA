@@ -1,0 +1,142 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N, M, R, mode;
+	static int[][] arr;
+	static int[][] arr2;
+	static int[][] arr3;
+	static String s;
+
+	public static void main(String[] args) throws Exception {
+		Scanner scann = new Scanner(System.in);
+
+		N = scann.nextInt();
+		M = scann.nextInt();
+		R = scann.nextInt();
+		arr = new int[N][M];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				arr[i][j] = scann.nextInt();
+			}
+		}
+		for (int i = 0; i < R; i++) {
+			int a = scann.nextInt();
+			switch (a) {
+			case 1:
+				sol1();
+				break;
+			case 2:
+				sol2();
+				break;
+			case 3:
+				sol3(arr.length, arr[0].length);
+				break;
+			case 4:
+				sol4(arr.length, arr[0].length);
+				break;
+			case 5:
+				sol5(arr.length,arr[0].length);
+				break;
+			case 6:
+				sol6(arr.length,arr[0].length);
+				break;
+			default:
+				break;
+			}
+		}
+		print(arr);
+	}
+
+	private static void print(int[][] ar) {
+		for (int i = 0; i < ar.length; i++) {
+			for (int j = 0; j < ar[i].length; j++) {
+				System.out.print(ar[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	private static void sol1() {
+		for (int j = 0; j < arr[0].length; j++) {
+			for (int i = 0; i < arr.length / 2; i++) {
+				int temp = arr[i][j];
+				arr[i][j] = arr[arr.length - i - 1][j];
+				arr[arr.length - i - 1][j] = temp;
+			}
+		}
+	}
+
+	private static void sol2() {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length / 2; j++) {
+				int temp = arr[i][j];
+				arr[i][j] = arr[i][arr[0].length - j - 1];
+				arr[i][arr[0].length - j - 1] = temp;
+			}
+		}
+	}
+
+	private static void sol3(int r, int c) {
+		arr2 = new int[c][r];
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < c; j++) {
+				arr2[j][r - i - 1] = arr[i][j];
+			}
+		}
+		arr = arr2;
+	}
+
+	private static void sol4(int r, int c) {
+		arr2 = new int[c][r];
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < c; j++) {
+				arr2[c - j - 1][i] = arr[i][j];
+			}
+		}
+		arr = arr2;
+	}
+
+	private static void sol5(int r, int c) {
+		arr3 = new int[r][c];
+		for (int i = 0; i < r / 2; i++) {
+			for (int j = 0; j < c / 2; j++) {
+				arr3[i][j + c / 2] = arr[i][j];
+			}
+			for (int j = c / 2; j < c; j++) {
+				arr3[i + r / 2][j] = arr[i][j];
+			}
+		}
+		for (int i = r / 2; i < r; i++) {
+			for (int j = 0; j < c / 2; j++) {
+				arr3[i - r / 2][j] = arr[i][j];
+			}
+			for (int j = c / 2; j < c; j++) {
+				arr3[i][j - c / 2] = arr[i][j];
+			}
+		}
+		arr = arr3;
+	}
+
+	private static void sol6(int r, int c) {
+		arr3 = new int[r][c];
+		for (int i = 0; i < r / 2; i++) {
+			for (int j = 0; j < c / 2; j++) {
+				arr3[i + r / 2][j] = arr[i][j];
+			}
+			for (int j = c / 2; j < c; j++) {
+				arr3[i][j - c / 2] = arr[i][j];
+			}
+		}
+		for (int i = r / 2; i < r; i++) {
+			for (int j = 0; j < c / 2; j++) {
+				arr3[i][j + c / 2] = arr[i][j];
+			}
+			for (int j = c / 2; j < c; j++) {
+				arr3[i - r / 2][j] = arr[i][j];
+			}
+		}
+		arr = arr3;
+	}
+
+}
