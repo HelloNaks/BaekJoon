@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	static int N;
+	static int minC;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		minC=Integer.MAX_VALUE;
+		//로직
+		for (int i = 0; i < N/5+1; i++) {
+			if((N-i*5)%3==0) {
+				minC=Math.min(minC, i+(N-i*5)/3);	
+			}
+		}
+		//출력
+		System.out.println(minC==Integer.MAX_VALUE?-1:minC);
+	}
+}
