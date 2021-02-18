@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int sum=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		String s = scann.next();
+		char c = s.charAt(0);
+		System.out.println((int)c);
+	}
+}
