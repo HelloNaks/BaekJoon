@@ -1,0 +1,21 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		int A=scann.nextInt();
+		for (int i = 0; i < A; i++) {
+			int B=scann.nextInt();
+			String C=scann.next();
+			char[] ch=C.toCharArray();
+			for(int j=0;j<ch.length;j++) {
+				for(int k=0;k<B;k++) {
+					System.out.print(ch[j]);
+				}
+			}
+			System.out.println();
+		}
+	}
+}
