@@ -1,0 +1,41 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	static int[][] v = new int[101][101];
+	static int num = 0;
+	static int[] dr = { 0, 1, 0, -1 };
+	static int[] dc = { 1, 0, -1, 0 };
+
+	public static void main(String[] args) throws IOException {
+		Scanner scann = new Scanner(System.in);
+		int T = scann.nextInt();
+		for (int t = 0; t < T; t++) {
+			int a = scann.nextInt();
+			int b = scann.nextInt();
+			for (int i = a; i < a + 10; i++) {
+				for (int j = b; j < b + 10; j++) {
+					v[i + 1][j + 1] = 1;
+				}
+			}
+		}
+		for (int i = 1; i < 101; i++) {
+			for (int j = 1; j < 101; j++) {
+				if (v[i][j] == 1) {
+					for (int d = 0; d < 4; d++) {
+						int nr = i + dr[d];
+						int nc = j + dc[d];
+
+						if (nr >= 1 && nr <= 100 && nc >= 1 && nc <= 100 && v[nr][nc] == 0) {
+							num++;
+						} else if (nr == 0 || nr == 101 || nc == 0 || nc == 101) {
+							num++;
+						}
+					}
+				}
+			}
+		}
+		System.out.println(num);
+	}
+}
