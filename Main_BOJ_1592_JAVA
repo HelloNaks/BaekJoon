@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int[] circle;
+	static int N, M, L;
+	static int place=1;
+	static int cnt=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		M=scann.nextInt();
+		L=scann.nextInt();
+		circle=new int[N+1];
+		circle[1]++;
+		while(true) {
+			if(circle[place]%2==1) {
+				place+=L;
+				if(place>N) {
+					place-=N;
+					if(place==0)
+						place=1;
+				}
+				circle[place]++;
+				cnt++;
+				if(circle[place]==M)
+					break;
+			}
+			else {
+				place -=L;
+				if(place<=0) {
+					place+=N;
+				}
+				circle[place]++;
+				cnt++;
+				if(circle[place]==M)
+					break;
+			}
+		}
+		System.out.println(cnt);
+	}
+
+}
