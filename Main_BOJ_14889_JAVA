@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int[][] map;
+	static int min = Integer.MAX_VALUE;
+	static boolean[] visited;
+	static int n;
+
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		n = scann.nextInt();
+		map = new int[n][n];
+		visited = new boolean[n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				map[i][j] = scann.nextInt();
+			}
+		}
+
+		nCr(0, 0);
+		System.out.println(min);
+	}
+
+	private static void nCr(int idx, int count) {
+		if (count == n / 2) {
+			diff();
+			return;
+		}
+
+		for (int i = idx; i < n; i++) {
+			if (!visited[i]) {
+				visited[i] = true;
+				nCr(i + 1, count + 1);
+				visited[i] = false;
+			}
+		}
+	}
+
+	private static void diff() {
+		int start_Team = 0;
+		int link_Team = 0;
+		
+		for (int i = 0; i < n-1; i++) {
+			for (int j = i+1; j < n; j++) {
+				if(visited[i]==true && visited[j]==true) {
+					start_Team+=map[i][j];
+					start_Team+=map[j][i];
+				}
+				else if(visited[i]==false && visited[j]==false) {
+					link_Team+=map[i][j];
+					link_Team+=map[j][i];
+				}
+			}
+		}
+		
+		int value = Math.abs(start_Team - link_Team);
+		min=Math.min(value, min);
+	}
+
+}
