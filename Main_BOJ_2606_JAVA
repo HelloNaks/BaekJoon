@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N, M, cnt=0;
+	static int[][] map;
+	static boolean[] v;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		M=scann.nextInt();
+		map=new int[N+1][N+1];
+		v=new boolean[N+1];
+		for (int i = 0; i < M; i++) {
+			int a=scann.nextInt();
+			int b=scann.nextInt();
+			map[a][b]=map[b][a]=1;
+		}
+		dfs(1);
+		System.out.println(cnt);
+	}
+	private static void dfs(int i) {
+		v[i]=true;
+		for (int j = 0; j < map.length; j++) {
+			if(map[i][j]==1 && !v[j]) {
+				cnt++;
+				dfs(j);
+			}
+		}
+	}
+
+}
