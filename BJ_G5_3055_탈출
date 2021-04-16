@@ -1,0 +1,105 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+
+	static int R, C;
+	static int[][] map;
+	static int DR, DC;
+	static int ans = 0;
+
+	static int[] dr = { -1, 1, 0, 0 };
+	static int[] dc = { 0, 0, -1, 1 };
+	static Queue<int[]> bevers;
+	static Queue<int[]> waters;
+
+	public static void main(String[] args) throws Exception {
+		Scanner scann = new Scanner(System.in);
+		R = scann.nextInt();
+		C = scann.nextInt();
+		bevers = new LinkedList<int[]>();
+		waters = new LinkedList<int[]>();
+		map = new int[R][C];
+
+		for (int i = 0; i < R; i++) {
+			char[] ch = scann.next().toCharArray();
+			for (int j = 0; j < C; j++) {
+				map[i][j] = ch[j];
+				if (map[i][j] == 'S') {
+					bevers.add(new int[] { i, j, 0 });
+				}
+				if (map[i][j] == '*') {
+					waters.add(new int[] { i, j, 0 });
+				}
+				if (map[i][j] == 'D') {
+					DR = i;
+					DC = j;
+				}
+			}
+		}
+
+		while (true) {
+			// 도착못함
+			if (bevers.size() == 0) {
+				System.out.println("KAKTUS");
+				break;
+			}
+			bfsWater(); // dungeon에서 술래가 먼저
+			// 도착
+			int count=bfsBeavers();
+			if(count>0) {
+				System.out.println(count);
+				break;
+			}
+		}
+	}
+	static int bfsBeavers() {
+		int size = bevers.size();
+		while (size-- > 0) {
+			int[] cur = bevers.poll();
+			int cr = cur[0];
+			int cc = cur[1];
+			int time = cur[2];
+			
+			for (int d = 0; d < 4; d++) {
+				int nr = cr + dr[d];
+				int nc = cc + dc[d];
+				if(!check(nr,nc))continue;
+				if (nr==DR && nc==DC)
+					return time+1;
+				if(map[nr][nc]=='.') {
+					map[nr][nc]='S';
+					bevers.add(new int[]{nr,nc,time+1}); // r, c, distance
+				}
+			}
+		}
+		return -1;
+	}
+
+	static void bfsWater() {
+		int size = waters.size();
+		while (size-- > 0) {
+			int[] cur = waters.poll();
+			int cr = cur[0];
+			int cc = cur[1];
+			int time = cur[2];
+			for (int d = 0; d < 4; d++) {
+				int nr = cr + dr[d];
+				int nc = cc + dc[d];
+				if (!check(nr, nc))
+					continue;
+				if(map[nr][nc]=='.' || map[nr][nc]=='S') {
+					map[nr][nc]='*';
+					waters.add(new int[]{nr,nc,time+1}); // r, c, distance
+				}
+			}
+		}
+
+	}
+
+	private static boolean check(int nr, int nc) {
+		return nr >= 0 && nr < R && nc >= 0 && nc < C;
+	}
+
+}
