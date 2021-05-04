@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int N, M;
+	static String[] want;
+	static HashMap<Integer, String> map = new HashMap<Integer,String>();
+	static HashMap<String, Integer> mapB = new HashMap<String, Integer>();
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N=Integer.parseInt(st.nextToken());
+		M=Integer.parseInt(st.nextToken());
+		want=new String[M];
+		for (int i = 0; i < N; i++) {
+			String s= br.readLine();
+			map.put(i+1, s);
+			mapB.put(s, i+1);
+		}
+		for (int i = 0; i < M; i++) {
+			want[i]=br.readLine();
+		}
+		for (int i = 0; i < M; i++) {
+			if(want[i].charAt(0)>='0' &&want[i].charAt(0)<='9') {
+				bw.write(map.get(Integer.parseInt(want[i]))+"\n");
+			}else {
+				bw.write(mapB.get(want[i])+"\n");
+			}
+		}
+		bw.flush();
+	}
+
+}
