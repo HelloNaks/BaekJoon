@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N, M;
+	static int[][] map;
+	static int[][] tot;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		M=scann.nextInt();
+		map=new int[N+1][N+1];
+		tot=new int[N+1][N+1];
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= N; j++) {
+				map[i][j]=scann.nextInt();	
+			}
+		}
+		
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= N; j++) {
+				tot[i][j]=map[i][j]+tot[i-1][j]+tot[i][j-1]-tot[i-1][j-1];	
+			}
+		}
+		for (int i = 0; i < M; i++) {
+			int r1=scann.nextInt();
+			int c1=scann.nextInt();
+			int r2=scann.nextInt();
+			int c2=scann.nextInt();
+			System.out.println(tot[r2][c2]-tot[r1-1][c2]-tot[r2][c1-1]+tot[r1-1][c1-1]);
+		}
+		
+	}
+}
