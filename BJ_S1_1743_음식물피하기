@@ -1,0 +1,67 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+
+	static int N, M, K;
+	static int[][] map;
+	static boolean[][] visited;
+	static int[] dr= {-1,0,1,0};
+	static int[] dc= {0,1,0,-1};
+	static int max_ans=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		M=scann.nextInt();
+		K=scann.nextInt();
+		map=new int[N][M];
+		visited=new boolean[N][M];
+		for (int i = 0; i < K; i++) {
+			int a=scann.nextInt()-1;
+			int b=scann.nextInt()-1;
+			map[a][b]=1;
+		}
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if(!visited[i][j] && map[i][j]==1) {
+					max_ans=Math.max(bfs(i,j), max_ans);
+				}
+			}
+		}
+		System.out.println(max_ans);
+	}
+	private static int bfs(int r, int c) {
+		Queue<Node> q = new LinkedList<Node>();
+		visited[r][c]=true;
+		q.offer(new Node(r,c));
+		int cnt=0;
+		while(!q.isEmpty()) {
+			cnt++;
+			Node temp=q.poll();
+			for (int d = 0; d < 4; d++) {
+				int nr=temp.r+dr[d];
+				int nc = temp.c+dc[d];
+				if(isChecked(nr,nc) && map[nr][nc]==1 && !visited[nr][nc]) {
+					q.offer(new Node(nr,nc));
+					visited[nr][nc]=true;
+				}
+			}
+		}
+		return cnt;
+	}
+
+	private static boolean isChecked(int nr, int nc) {
+		return nr>=0 &&nr<N && nc>=0 &&nc<M;
+	}
+	
+	private static class Node{
+		int r;
+		int c;
+		public Node(int r, int c) {
+			super();
+			this.r = r;
+			this.c = c;
+		}
+	}
+}
