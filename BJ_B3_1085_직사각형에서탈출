@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int x, y, w, h;
+	static int min=1000;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		x=scann.nextInt();
+		y=scann.nextInt();
+		w=scann.nextInt();
+		h=scann.nextInt();
+		min=Math.min(Math.min(Math.min(x, y), w-x), h-y);
+		System.out.println(min);
+	}
+}
