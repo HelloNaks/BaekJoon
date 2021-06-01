@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		Scanner scann = new Scanner(System.in);
+		int n=scann.nextInt();
+		for (int i = 0; i < n; i++) {
+			String[] a=scann.next().split(",");
+			System.out.println(Integer.parseInt(a[0])+Integer.parseInt(a[1]));
+		}
+	}
+
+}
