@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class Main {
+    static int N, M, V;
+    static boolean[] visited;
+    static ArrayList[] list;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        N = sc.nextInt();
+        M = sc.nextInt();
+        V = sc.nextInt();
+        list = new ArrayList[N+1];
+        for(int i=0;i<N+1;i++){
+            list[i] = new ArrayList();
+        }
+        visited = new boolean[N+1];
+        for (int i=0;i<M;i++){
+            int from = sc.nextInt();
+            int to = sc.nextInt();
+            list[from].add(to);
+            list[to].add(from);
+        }
+
+        for(int i=0;i<=N;i++){
+            list[i].sort(new Comparator() {
+                @Override
+                public int compare(Object o, Object t1) {
+                    return (int)o-(int)t1;
+                }
+            });
+        }
+        visited[V]=true;
+        System.out.print(V+" ");
+        dfs(V);
+        System.out.println();
+        visited = new boolean[N+1];
+        System.out.print(V+" ");
+        bfs();
+    }
+
+    private static void dfs(int v) {
+        for(int i=0;i<list[v].size();i++){
+            if(!visited[(int) list[v].get(i)]){
+                visited[(int) list[v].get(i)]=true;
+                System.out.print(list[v].get(i)+" ");
+                dfs((int) list[v].get(i));
+            }
+        }
+    }
+
+    private static void bfs() {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(V);
+        visited[V]=true;
+        while(!q.isEmpty()){
+            int temp = q.poll();
+            for(int i=0;i<list[temp].size();i++){
+                if(!visited[(int) list[temp].get(i)]){
+                    visited[(int) list[temp].get(i)] = true;
+                    System.out.print(list[temp].get(i)+" ");
+                    q.add((int) list[temp].get(i));
+                }
+            }
+        }
+    }
+
+}
