@@ -1,0 +1,17 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+
+using namespace std;
+
+int main()
+{
+	char t;
+	scanf("%c", &t);
+	printf("%d", t);
+	return 0;
+}

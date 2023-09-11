@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String s=br.readLine();
+		char[] a = null;
+		char[] b = null;
+		char[] ch = s.toCharArray();
+		int idx_a=0;
+		int idx_b=0;
+		for(int i=0;i<ch.length;i++) {
+			if(ch[i]==' ') {
+				a=new char[i];
+				b=new char[ch.length-i-1];
+				for(int j=0;j<i;j++) {
+					a[j]=ch[j];
+				}
+				for(int j=i;j<ch.length-1;j++) {
+					b[j-i]=ch[j+1];
+				}
+				break;
+			}
+		}
+		char[][] arr = new char[b.length][a.length];
+		int temp=0;
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b.length; j++) {
+				if(b[j]==a[i]) {
+					idx_a=i;
+					idx_b=j;
+					temp=1;
+					break;
+				}
+			}
+			if(temp==1)
+				break;
+			
+		}
+		int aa=0;
+		int bb=0;
+		// idx_a = 1 / idx_b = 4
+		for (int i = 0; i < b.length; i++) {
+			for (int j = 0; j < a.length; j++) {
+				if(j==idx_a && i==idx_b) {
+					arr[i][j]=b[bb++];
+					aa++;
+				}else if(j==idx_a) {
+					arr[i][j]=b[bb++];
+				}else if(i==idx_b) {
+					arr[i][j]=a[aa++];
+				}
+				else {
+					arr[i][j]='.';
+				}
+				System.out.print(arr[i][j]);
+			}
+			System.out.println();
+		}
+
+	}
+
+}

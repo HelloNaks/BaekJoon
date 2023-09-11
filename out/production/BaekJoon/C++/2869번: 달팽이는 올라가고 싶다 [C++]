@@ -1,0 +1,31 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+using namespace std;
+#define min(a,b) a > b ? b : a
+#define max(a,b) a > b ? a : b
+
+int main()
+{
+	int a, b, v, res = 0, num = 1;
+	scanf("%d %d %d", &a, &b, &v);
+	
+	if (a > v)
+	{
+		printf("1");
+		return 0;
+	}
+	// 나누어 떨어지면 몫만큼 일 수가 걸리고, 나머지가 있으면 하루 더 걸린다.
+	res = (v - a) / (a - b);
+	if ((v - a) % (a - b) == 0)
+		num += res;
+	else
+		num += res + 1;
+	printf("%d", num);
+
+	return 0;
+}

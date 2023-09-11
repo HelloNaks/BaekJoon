@@ -1,0 +1,61 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+
+	static int map[][];
+	static boolean[] visited;
+	static int n, m, v;
+
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		n = scann.nextInt();
+		m = scann.nextInt();
+		v = scann.nextInt();
+		map = new int[n + 1][n + 1];
+		visited = new boolean[n + 1];
+
+		for (int i = 0; i < m; i++) {
+			int x = scann.nextInt();
+			int y = scann.nextInt();
+
+			map[x][y] = map[y][x] = 1;
+		}
+		
+		dfs(v);
+		System.out.println();
+		visited = new boolean[n+1];
+		bfs();
+	}
+
+	private static void bfs() {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.offer(v);
+		visited[v]=true;
+		System.out.print(v + " ");
+		
+		while(!queue.isEmpty()) {
+			int temp=queue.poll();
+			
+			for (int i = 1; i <= n; i++) {
+				if(map[temp][i]==1 && visited[i] == false) {
+					queue.offer(i);
+					visited[i]=true;
+					System.out.print(i + " ");
+				}
+			}
+		}
+	}
+
+	public static void dfs(int i) {
+		visited[i] = true;
+		System.out.print(i + " ");
+		for (int j = 1; j <= n; j++) {
+			if (map[i][j] == 1 && visited[j] == false) {
+				dfs(j);
+			}
+		}
+	}
+	
+}

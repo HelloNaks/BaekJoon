@@ -1,0 +1,45 @@
+//#include <string>
+#include <iostream>
+//#include <vector>
+//#include <stdio.h>
+#include <algorithm>
+//#include <math.h>
+#include <queue>
+//#include <stack>
+
+using namespace std;
+
+typedef struct person {
+	int h;
+	int w;
+	int rank;
+}person;
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n;
+	cin >> n;
+	person *p = (person*)malloc(sizeof(person)*n);
+	for (int i = 0; i < n; i++)
+	{
+		cin >> p[i].w >> p[i].h;
+		p[i].rank = 1;
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (p[i].w > p[j].w && p[i].h > p[j].h)
+				p[j].rank++;
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << p[i].rank << ' ';
+	}
+
+	return 0;
+}

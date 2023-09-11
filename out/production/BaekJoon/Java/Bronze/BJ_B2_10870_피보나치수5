@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N;
+	static int[] map=new int[21];
+	public static void main(String[] args) {
+		map[0]=0;
+		map[1]=1;
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		for (int i = 2; i <= N; i++) {
+			map[i]=map[i-1]+map[i-2];
+		}
+		System.out.println(map[N]);
+	}
+
+}

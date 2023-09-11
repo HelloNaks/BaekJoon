@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	static int N;
+	static int M;
+	static int R=3;
+	static int[] p;
+	static int[] num;
+	static boolean[] v;
+	static int tot=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		M=scann.nextInt();
+		p=new int[N];
+		for (int i = 0; i < N; i++) {
+			p[i]=scann.nextInt();
+		}
+		v=new boolean[N];
+		num=new int[3];
+		int sum=0;
+		nCr(0,0);
+		System.out.println(tot);
+	}
+	private static void nCr(int cnt, int start) {
+		int sum=0;
+		if(R==cnt) {
+			for(int i=0;i<R;i++) {
+				sum+=num[i];
+			}
+			if(sum>tot && sum<=M) {
+				tot=sum;
+			}
+			return;
+		}
+		for(int i = start; i < N;i++) {
+			if(v[i])continue;
+			v[i]=true;
+			num[cnt]=p[i];
+			nCr(cnt+1,start+1);
+			v[i]=false;
+		}
+	}
+
+}

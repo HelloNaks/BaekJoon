@@ -1,0 +1,42 @@
+//#include <string>
+#include <iostream>
+//#include <vector>
+//#include <stdio.h>
+#include <algorithm>
+//#include <math.h>
+#include <queue>
+#include <stack>
+
+using namespace std;
+
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n;
+	stack<int> st;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		int t;
+		cin >> t;
+		if (t != 0)
+			st.push(t);
+		else
+			st.pop();
+	}
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (!st.empty())
+		{
+			sum += st.top();
+			st.pop();
+		}
+		else
+			break;
+	}
+	cout << sum << '\n';
+	return 0;
+}

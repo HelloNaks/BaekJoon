@@ -1,0 +1,53 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+#include <stack>
+
+using namespace std;
+int dp[41];
+
+int fibonacci(int n);
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n;
+	cin >> n;
+	int a;
+	
+	for (int i = 0; i < n; i++)
+	{
+		cin >> a;
+		if (a == 0)
+			printf("1 0\n");
+		else if (a == 1)
+			printf("0 1\n");
+		else
+		{
+			int t = fibonacci(a);
+			printf("%d %d\n", dp[a - 1], dp[a]);
+		}
+	}
+
+	return 0;
+}
+
+int fibonacci(int n) {
+	if (n == 0) {
+		dp[0] = 0;
+		return 0;
+	}
+	else if (n == 1) {
+		dp[1] = 1;
+		return 1;
+	}
+	if (dp[n] != 0)
+		return dp[n];
+	else
+		return dp[n] = fibonacci(n - 1) + fibonacci(n - 2);
+}

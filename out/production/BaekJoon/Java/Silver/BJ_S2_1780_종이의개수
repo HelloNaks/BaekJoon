@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N;
+	static int[][] map;
+	static int []num=new int[3];
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		map=new int[N][N];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				map[i][j]=scann.nextInt();
+			}
+		}
+		divide(N,0,0);
+		for (int i = 0; i < 3; i++) {
+			System.out.println(num[i]);
+		}
+	}
+	private static void divide(int n, int r, int c) {
+		for (int i = r; i < r+n; i++) {
+			for (int j = c; j < c+n; j++) {
+				if(map[i][j] != map[r][c]) {
+					divide(n/3,r,c);
+					divide(n/3,r+n/3,c);
+					divide(n/3,r+2*n/3,c);
+					
+					divide(n/3,r,c+n/3);
+					divide(n/3,r+n/3,c+n/3);
+					divide(n/3,r+2*n/3,c+n/3);
+					
+					divide(n/3,r,c+2*n/3);
+					divide(n/3,r+n/3,c+2*n/3);
+					divide(n/3,r+2*n/3,c+2*n/3);
+					
+					return;
+				}
+			}
+		}
+		num[map[r][c]+1]++;
+	}
+
+}

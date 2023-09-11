@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+#include <string.h>
+#include <stdlib.h>
+
+using namespace std;
+
+int main()
+{
+	int A[5];
+	for (int i = 0; i < 5; i++)
+	{
+		cin >> A[i];
+	}
+	int t = pow(A[0], 2) + pow(A[1], 2) + pow(A[2], 2) +
+		pow(A[3], 2) + pow(A[4], 2);
+	t %= 10;
+	cout << t << endl;
+	return 0;
+}

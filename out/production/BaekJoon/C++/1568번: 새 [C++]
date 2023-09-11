@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+#include <stdlib.h>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+	int n;
+	cin >> n;
+	int left = n;
+	int idx = 1;
+	int time = 0;
+	while (true)
+	{
+		if (left == 0)
+			break;
+		if (idx > left)
+		{
+			idx = 1;
+			continue;
+		}
+		else
+		{
+			left -= idx;
+			idx++;
+			time++;
+		}
+	}
+
+	cout << time;
+	return 0;
+}

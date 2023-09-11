@@ -1,0 +1,19 @@
+//#include <string>
+#include <iostream>
+//#include <vector>
+//#include <stdio.h>
+#include <algorithm>
+//#include <math.h>
+#include <queue>
+//#include <stack>
+
+using namespace std;
+
+int main()
+{
+	//cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	cout << "강한친구 대한육군\n";
+	cout << "강한친구 대한육군\n";
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <algorithm>
+#include <math.h>
+#include <queue>
+
+using namespace std;
+
+#define min(a,b) a > b ? b : a
+#define max(a,b) a > b ? a : b
+
+int boo(int a, int b)
+{
+	if (a == 0)
+		return b;
+	else if (b == 1)
+		return 1;
+	else
+		return boo(a - 1, b) + boo(a, b - 1);
+}
+
+int main()
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int t;
+	cin >> t;
+	for (int i = 0; i < t; i++)
+	{
+		int k, n;
+		int res;
+		cin >> k >> n;
+		res = boo(k, n);
+		cout << res << '\n';
+	}
+	return 0;
+}

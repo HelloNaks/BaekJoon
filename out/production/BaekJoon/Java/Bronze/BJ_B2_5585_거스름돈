@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N;
+	static int num=0;
+	static int[] coin= {500, 100, 50, 10, 5, 1};
+	static int cnt=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		N=1000-N;
+		while(true) {
+			if(N==0) {
+				break;
+			}
+			if(N-coin[num]>=0) {
+				N-=coin[num];
+				cnt++;
+			}else {
+				num++;
+			}
+		}
+		System.out.println(cnt);
+	}
+}

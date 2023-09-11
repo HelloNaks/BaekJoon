@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int N;
+	static int cnt=0;
+	public static void main(String[] args) {
+		Scanner scann = new Scanner(System.in);
+		N=scann.nextInt();
+		for(int i=1;i<=N;i++) {
+			for(int j=i;j*i<=N;j++) {
+				cnt++;
+			}
+		}
+		System.out.println(cnt);
+	}
+
+}
