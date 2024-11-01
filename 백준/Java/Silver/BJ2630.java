@@ -12,22 +12,6 @@ public class BJ2630 {
                 arr[i][j] = sc.nextInt();
             }
         }
-        int depth = 0;
-        if(N==2){
-            depth = 1;
-        }else if(N==4){
-            depth = 2;
-        }else if(N==8){
-            depth = 3;
-        }else if(N==16){
-            depth = 4;
-        }else if(N==32){
-            depth = 5;
-        }else if(N==64){
-            depth = 6;
-        }else if(N==128){
-            depth = 7;
-        }
 
         run(arr, 0,N,0,N);
 
